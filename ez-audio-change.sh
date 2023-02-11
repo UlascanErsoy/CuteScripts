@@ -2,10 +2,14 @@
 
 sinks=$(/usr/bin/pacmd list-sinks | grep -E 'index|device.description')
 
-
 input_indexes=()
 choices=""
 
+chooser_cmd="fzf"
+
+if ! [[ -z $1 ]]; then
+    chooser_cmd=$1
+fi
 while IFS= read -r line; do 
     if [[ $line =~  (index:[[:space:]])([0-9]+) ]]; then
         choices+="${BASH_REMATCH[2]}-" 
@@ -15,7 +19,7 @@ while IFS= read -r line; do
     fi
 done <<< "$sinks"
 
-choice=$(echo -e $(echo $choices | tr '"' ' ') | fzf)
+choice=$(echo -e $(echo $choices | tr '"' ' ') | "$chooser_cmd")
 
 if [[ $choice =~ ([0-9]+)([-]) ]]; then
     choice=${BASH_REMATCH[1]}
