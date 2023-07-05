@@ -3,9 +3,9 @@
 HDMI=$(xrandr --listmonitors | grep HDMI)
 
 xrandr --auto
-
+xrandr --output HDMI-1-0 -r 100
 if ! [[ -z $HDMI ]]; then
-    xrandr --auto --output eDP-1-1 --left-of HDMI-0
+    xrandr --auto --output eDP-1 --left-of HDMI-1-0
 fi 
 
 

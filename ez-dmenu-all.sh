@@ -12,7 +12,7 @@ while IFS= read -r line; do
 
 done <<< "$flatpak_apps"
 
-choice=$(echo -e "$(dmenu_path)\n$choices" | dmenu)
+choice=$(echo -e "$(dmenu_path)\n$choices" | i3-dmenu-desktop)
 
 if [[ "$choices" =~ $choice ]]; then
     while IFS= read -r line; do 
