@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
 if [[ $# -eq 1 ]]; then
-    selected=$1
+    selected=$(find $1 -mindepth 1 -maxdepth 1 -type d | fzf-tmux)
+
 else
-    selected=$(find ~/workspace ~/workspace/rust-ml ~/workspace/learn-rust/ -mindepth 1 -maxdepth 1 -type d | fzf-tmux)
+    selected=$(find ~/workspace ~/workspace/rust-ml ~/workspace/learn-rust/ ~/workspace/how-to-websocket/ -mindepth 1 -maxdepth 1 -type d | fzf-tmux)
 fi
 
 if [[ -z $selected ]]; then
