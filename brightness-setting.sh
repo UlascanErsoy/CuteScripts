@@ -12,8 +12,8 @@ fi
 echo $chooser
 
 while IFS= read -r line; do
-    if [[ $line =~ [0-9][[:space:]](.*)[0-9][[:space:]]*(.+)$ ]]; then
-        monitors+="${BASH_REMATCH[2]}\n"
+    if [[ $line =~ [0-9][[:space:]](.*)[0-9][[:space:]]*(.+) ]]; then
+        monitors+="${line##* }\n"
         index+=1
     fi
 done <<< $(xrandr --listmonitors)     
